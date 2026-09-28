@@ -1,0 +1,31 @@
+<ng-container *ngIf="alert">
+  <ngb-alert data-test="ngbAlert"
+             #staticAlert
+             class="tsn-alert-customAlert"
+             [dismissible]="(alert?.dismissible !== '' && alert?.dismissible == false) ? alert.dismissible : true"
+             [type]="alert.type"
+           (closed)="onAlertClosed()"
+  >
+    <div class="d-flex d-flex align-items-center justify-content-between w-100">
+      <div class="d-flex d-flex align-items-center flex-grow-1 m-w-0 text-break">
+        <i class="align-middle entry-icon"
+           [ngClass]="{'bw-close-circle':alert.type === 'danger' ,
+                'bw-tick-circle':alert.type === 'success' ,
+                'bw-exclamation-circle': alert.type ==='warning' }"></i>
+        &nbsp;
+        <span>
+          {{ alert.message|translate }}
+        </span>
+      </div>
+      <span class="px-2"></span>
+      <div class="d-flex align-items-center flex-shrink-0 alert-content">
+        <button class="btn {{alert.customBtnType}}" (click)="ClickBtn($event)"
+                *ngIf="alert.showCustomBtn">{{ alert.customBtnTitle }}
+        </button>
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </ngb-alert>
+  <ngb-progressbar *ngIf="alert.autoClose && percentageComplete < alert.duration" [type]="alert.type"
+                   [value]="percentageComplete" [max]="alert.duration" height=".1rem"></ngb-progressbar>
+</ng-container>
