@@ -11,7 +11,8 @@ import {
 } from '@angular/core';
 import {TsnAlertModel} from "../shared/models/tsnAlert.model";
 import {NgbAlert} from "@ng-bootstrap/ng-bootstrap";
- 
+
+
 @Component({
     selector: 'tsn-alert',
     templateUrl: './tsn-alert.component.html',
