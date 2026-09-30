@@ -14,19 +14,11 @@ const meta: Meta<TsnAlertComponent> = {
   argTypes: {
     alert: {
       control: 'object',
-      description: 'The configuration model for the alert containing type, message, duration, etc.',
+      description: 'The configuration model for the alert containing type, message, and behavior settings.',
     },
     clickedCustomBtn: {
       action: 'clickedCustomBtn',
-      description: 'Event emitted when the custom button is clicked.',
-    },
-  },
-  args: {
-    alert: {
-      type: 'success',
-      message: 'Operation completed successfully!',
-      dismissible: true,
-      showCustomBtn: false,
+      description: 'Event emitted when the custom action button is clicked.',
     },
   },
 };
@@ -38,7 +30,7 @@ export const Success: Story = {
   args: {
     alert: {
       type: 'success',
-      message: 'Your changes have been saved.',
+      message: 'Operation completed successfully!',
       dismissible: true,
     },
   },
@@ -64,6 +56,15 @@ export const DangerAutoClose: Story = {
       message: 'An error occurred. Closing in 5 seconds.',
       autoClose: true,
       duration: 5,
+    },
+  },
+};
+
+export const Info: Story = {
+  args: {
+    alert: {
+      type: 'info',
+      message: 'This is an informational alert.',
       dismissible: true,
     },
   },
