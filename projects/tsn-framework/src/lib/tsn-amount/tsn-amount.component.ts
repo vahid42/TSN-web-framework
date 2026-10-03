@@ -15,7 +15,8 @@ import {AbstractControl, FormControl,} from "@angular/forms";
 import {getCurrencySymbol, getNumberOfCurrencyDigits} from "@angular/common";
 import {TsnNumberPipe} from "../shared/pipes/tsn-number/tsn-number.pipe";
 import {IdGenerator} from "../shared/id-generato/id-generator";
- 
+
+
 
 @Component({
   selector: 'tsn-amount',
