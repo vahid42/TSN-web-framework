@@ -3,7 +3,7 @@ import { TsnAlertComponent } from './tsn-alert.component';
 import { TsnAlertModule } from './tsn-alert.module';
 
 const meta: Meta<TsnAlertComponent> = {
-  title: 'Design System/Tsn Alert',
+  title: 'Design System/Alert',
   component: TsnAlertComponent,
   tags: ['autodocs'],
   decorators: [
@@ -14,11 +14,23 @@ const meta: Meta<TsnAlertComponent> = {
   argTypes: {
     alert: {
       control: 'object',
-      description: 'The configuration model for the alert containing type, message, and behavior settings.',
+      description: 'Alert configuration model containing type, message, dismissible options, and custom button settings.',
     },
     clickedCustomBtn: {
       action: 'clickedCustomBtn',
-      description: 'Event emitted when the custom action button is clicked.',
+      description: 'Event emitted when the custom button inside the alert is clicked.',
+    },
+  },
+  args: {
+    alert: {
+      type: 'success',
+      message: 'This is a successful alert message.',
+      dismissible: true,
+      autoClose: false,
+      duration: 30,
+      showCustomBtn: false,
+      customBtnTitle: 'Action',
+      customBtnType: 'btn-primary',
     },
   },
 };
@@ -32,6 +44,11 @@ export const Success: Story = {
       type: 'success',
       message: 'Operation completed successfully!',
       dismissible: true,
+      autoClose: false,
+      duration: 30,
+      showCustomBtn: false,
+      customBtnTitle: '',
+      customBtnType: '',
     },
   },
 };
@@ -40,10 +57,12 @@ export const WarningWithButton: Story = {
   args: {
     alert: {
       type: 'warning',
-      message: 'Are you sure you want to proceed?',
-      dismissible: false,
+      message: 'Please review your account details.',
+      dismissible: true,
+      autoClose: false,
+      duration: 30,
       showCustomBtn: true,
-      customBtnTitle: 'Confirm',
+      customBtnTitle: 'Review',
       customBtnType: 'btn-warning',
     },
   },
@@ -53,19 +72,28 @@ export const DangerAutoClose: Story = {
   args: {
     alert: {
       type: 'danger',
-      message: 'An error occurred. Closing in 5 seconds.',
+      message: 'An error occurred while saving changes.',
+      dismissible: true,
       autoClose: true,
       duration: 5,
+      showCustomBtn: false,
+      customBtnTitle: '',
+      customBtnType: '',
     },
   },
 };
 
-export const Info: Story = {
+export const NonDismissible: Story = {
   args: {
     alert: {
-      type: 'info',
-      message: 'This is an informational alert.',
-      dismissible: true,
+      type: 'success',
+      message: 'This alert cannot be manually dismissed and requires action.',
+      dismissible: false,
+      autoClose: false,
+      duration: 30,
+      showCustomBtn: true,
+      customBtnTitle: 'Details',
+      customBtnType: 'btn-secondary',
     },
   },
 };
